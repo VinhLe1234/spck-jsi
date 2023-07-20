@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <h1>Home</h1>
+    <p id="dataName">Welcom </p>
+    <script src="index.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+        import { getDatabase, set, ref, child, get } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+
+        // firebase/auth thay doi thanh firebase-auth.js
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHK4Z_AqbT0Rf1nfmFo5M_dsL0TdjXJtY",
+            authDomain: "sigin-in-5f070.firebaseapp.com",
+            databaseURL: "https://sigin-in-5f070-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "sigin-in-5f070",
+            storageBucket: "sigin-in-5f070.appspot.com",
+            messagingSenderId: "21823449041",
+            appId: "1:21823449041:web:8150c67e6f5754eb00a2f0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        // TRICH XUAT DUONG DAN FIREBASE
+        const auth = getAuth(app);
+        const database = getDatabase();
+
+        //Hien thi thong tin nguoi dung
+
+        if (localStorage.user) {
+            console.log(localStorage.user)
+            var dataName = document.getElementById("dataName")
+            const dbRef = ref(getDatabase());
+            get(child(dbRef, `users/${localStorage.user}`))
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val());
+                    dataName.innerHTML = `Welcom ${snapshot.val().Name}`
+                } else {
+                    console.log("No data available");
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
+        }
+        
+
+
+            // ...
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+.nav-li{
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+}
+.nav-li:hover, .nav-li:focus{
+    color: red;
+}
+.btn-add{
+    border: 1px solid #000;
+    font-size: 16px;
+    font-weight: 500;
+}
+.btn-add:hover{
+    border: 1px solid #000;
+    background-color: black;
+    color: white;
+}
